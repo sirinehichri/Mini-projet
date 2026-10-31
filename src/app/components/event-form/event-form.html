@@ -1,0 +1,85 @@
+<section class="form-wrapper">
+  <div class="header-row">
+    <div>
+      <p class="eyebrow">Créer</p>
+      <h2>Ajouter un événement</h2>
+    </div>
+    <a class="back-link" routerLink="/events">Retour au catalogue</a>
+  </div>
+
+  <form [formGroup]="eventForm" (ngSubmit)="addEvent()" novalidate>
+    <div class="fields-grid">
+      <label class="field">
+        <span>Titre</span>
+        <input type="text" formControlName="title" placeholder="Ex. Hackathon local" />
+        @if (eventForm.get('title')?.touched && eventForm.get('title')?.invalid) {
+          <small class="error">Le titre est obligatoire et doit contenir entre 5 et 50 caractères.</small>
+        }
+      </label>
+
+      <label class="field">
+        <span>Catégorie</span>
+        <select formControlName="category">
+          <option value="">Choisir une catégorie</option>
+          <option value="Atelier">Atelier</option>
+          <option value="Conférence">Conférence</option>
+          <option value="Sport">Sport</option>
+        </select>
+        @if (eventForm.get('category')?.touched && eventForm.get('category')?.invalid) {
+          <small class="error">La catégorie est obligatoire.</small>
+        }
+      </label>
+
+      <label class="field">
+        <span>Date</span>
+        <input type="date" formControlName="date" />
+        @if (eventForm.get('date')?.touched && eventForm.get('date')?.invalid) {
+          <small class="error">La date est obligatoire.</small>
+        }
+      </label>
+
+      <label class="field">
+        <span>Lieu</span>
+        <input type="text" formControlName="place" placeholder="Ex. Place Bellecour" />
+        @if (eventForm.get('place')?.touched && eventForm.get('place')?.invalid) {
+          <small class="error">Le lieu est obligatoire et doit contenir au moins 3 caractères.</small>
+        }
+      </label>
+
+      <label class="field">
+        <span>Prix (€)</span>
+        <input type="number" min="0" step="0.01" formControlName="price" placeholder="0 pour un événement gratuit" />
+        @if (eventForm.get('price')?.touched && eventForm.get('price')?.invalid) {
+          @if (eventForm.get('price')?.errors?.['required']) {
+            <small class="error">Le prix est obligatoire.</small>
+          } @else if (eventForm.get('price')?.errors?.['min']) {
+            <small class="error">Le prix doit être supérieur ou égal à 0.</small>
+          }
+        }
+      </label>
+
+      <label class="field">
+        <span>Image URL</span>
+        <input type="url" formControlName="imageUrl" placeholder="https://..." />
+      </label>
+
+      <label class="field field-full">
+        <span>Description</span>
+        <textarea rows="5" formControlName="description" placeholder="Décrivez votre événement..."></textarea>
+        @if (eventForm.get('description')?.touched && eventForm.get('description')?.invalid) {
+          <small class="error">La description est obligatoire et doit contenir au moins 20 caractères.</small>
+        }
+      </label>
+    </div>
+
+    <div class="form-footer">
+      <button type="submit" class="submit-btn" [disabled]="eventForm.invalid">Ajouter l'événement</button>
+    </div>
+
+    <div class="debug-panel" aria-live="polite">
+      <h3>Valeurs du formulaire</h3>
+      <pre>{{ formValue() | json }}</pre>
+      <p><strong>Statut :</strong> {{ formStatusText() }}</p>
+    </div>
+  </form>
+</section>

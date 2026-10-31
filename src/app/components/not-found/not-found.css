@@ -1,0 +1,48 @@
+:host {
+  display: block;
+  padding: clamp(1.5rem, 2vw, 2.5rem);
+  background: linear-gradient(180deg, #f8fafc 0%, #eef4ff 100%);
+}
+
+section {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.04);
+}
+
+h2 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  letter-spacing: -0.06em;
+  color: #0f172a;
+}
+
+p {
+  margin: 0 0 1.5rem;
+  color: #475569;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.3rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.18);
+}

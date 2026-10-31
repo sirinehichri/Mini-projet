@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Fallback Event image">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#e9d5ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="600" cy="280" r="130" fill="#ffffff" fill-opacity="0.35"/>
+  <rect x="200" y="200" width="800" height="300" rx="24" fill="#ffffff" fill-opacity="0.15"/>
+  <path d="M346 540h508c15 0 27 12 27 27v7H319v-7c0-15 12-27 27-27Z" fill="#cbd5e1" fill-opacity="0.8"/>
+  <path d="M470 222c26-44 83-73 143-73 110 0 200 90 200 200 0 84-51 156-123 186l-78-45c46-19 77-67 77-120 0-72-58-130-130-130-56 0-104 34-122 84l-67-102Zm36 278c47 7 80 50 80 99v17H332v-19c0-56 47-101 103-101 27 0 51 8 71 24l-55 51 52 29 57-52 103 93 70-48-74-83 40-38-45-49-82 52-50-67-72 48Z" fill="#ffffff" fill-opacity="0.7"/>
+</svg>

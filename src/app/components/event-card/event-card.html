@@ -1,0 +1,31 @@
+<article class="event-card">
+	<a [routerLink]="['/events', event().id]" class="card-link">
+		<img
+			[src]="event().imageUrl"
+			[alt]="event().title"
+			class="thumb"
+			(error)="onImageError($event)" />
+		<header>
+			<h3>{{ event().title | uppercase }}</h3>
+			<p class="meta">{{ event().date | date:'fullDate' }} — {{ event().place }}</p>
+		</header>
+	</a>
+
+	<div class="card-body">
+		<p class="desc">{{ event().description }}</p>
+		<p class="price">{{ event().price === 0 ? 'Gratuit' : (event().price | currency:'EUR') }}</p>
+	</div>
+
+	<footer class="card-actions">
+		<button type="button" class="fav-btn" [class.is-active]="isFavorite()" (click)="onToggle()">
+			@if (isFavorite()) {
+				<span>Retirer des favoris</span>
+			} @else {
+				<span>Ajouter aux favoris</span>
+			}
+		</button>
+
+		<button type="button" class="delete-btn" (click)="onDelete()">Supprimer</button>
+		<a [routerLink]="['/events', event().id]" class="details-link">Voir détails</a>
+	</footer>
+</article>

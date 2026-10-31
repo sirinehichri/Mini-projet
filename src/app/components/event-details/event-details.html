@@ -1,0 +1,16 @@
+@if (event(); as e) {
+  <section class="details">
+    <h1>{{ e.title | uppercase }}</h1>
+    <img [src]="e.imageUrl" [alt]="e.title" class="hero" />
+    <p class="meta">{{ e.category }} — {{ e.date | date:'fullDate' }} — {{ e.place }}</p>
+    <p class="price">{{ e.price === 0 ? 'Gratuit' : (e.price | currency:'EUR') }}</p>
+    <div class="desc">{{ e.description }}</div>
+    <a routerLink="/events" class="back">← Retour à la liste</a>
+  </section>
+} @else {
+  <section class="not-found">
+    <h2>Événement introuvable</h2>
+    <p>Aucun événement ne correspond à cet identifiant.</p>
+    <a routerLink="/events">Retour à la liste des événements</a>
+  </section>
+}

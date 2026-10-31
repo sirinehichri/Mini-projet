@@ -1,0 +1,19 @@
+<header class="header">
+  <div class="brand-wrap">
+    <a class="brand" routerLink="/events" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <span class="brand-mark">E</span>
+      <span class="brand-text">EventHub</span>
+    </a>
+  </div>
+
+  <nav class="nav" aria-label="Navigation principale">
+    <a routerLink="/events" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Catalogue</a>
+    <a routerLink="/events/add" routerLinkActive="active">Ajouter un événement</a>
+    <a routerLink="/about" routerLinkActive="active">À propos</a>
+  </nav>
+
+  <div class="header-actions">
+    <button class="ghost-btn" type="button">Connexion</button>
+    <button class="primary-btn" type="button">Créer un compte</button>
+  </div>
+</header>

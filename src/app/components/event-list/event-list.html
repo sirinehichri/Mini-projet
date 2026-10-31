@@ -1,0 +1,36 @@
+<section class="toolbar">
+  <div class="title-wrap">
+    <p class="eyebrow">Découvrir</p>
+    <h2>Catalogue des événements</h2>
+  </div>
+
+  <div class="controls">
+    <div class="filters" aria-label="Filtres de catégorie">
+      <button type="button" (click)="selectedCategory.set(null)" [class.active]="selectedCategory() === null">Tous</button>
+      @for (cat of categories(); track cat) {
+        <button type="button" (click)="selectedCategory.set(cat)" [class.active]="selectedCategory() === cat">{{ cat }}</button>
+      } @empty {
+        <span class="empty-filter">Aucune catégorie</span>
+      }
+    </div>
+
+    <div class="stats" aria-label="Statistiques des événements">
+      <span class="stat-pill">Total : {{ eventCount() }}</span>
+      <span class="stat-pill">Favoris : {{ favoriteCount() }}</span>
+      <span class="stat-pill">Gratuits : {{ freeEventCount() }}</span>
+    </div>
+  </div>
+</section>
+
+<section class="grid" aria-live="polite">
+  @for (evt of filteredEvents(); track evt.id) {
+    <app-event-card
+      [event]="evt"
+      [isFavorite]="favorites().includes(evt.id)"
+      (toggleFavorite)="toggleFavorite(evt.id)"
+      (delete)="deleteEvent(evt.id)"
+    ></app-event-card>
+  } @empty {
+    <p class="empty">Aucun événement disponible.</p>
+  }
+</section>

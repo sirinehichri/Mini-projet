@@ -6,54 +6,64 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 To start a local development server, run:
 
-```bash
-ng serve
-```
+# EventHub — Catalogue d'événements (Angular 21, Standalone)
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Description
+-----------
+EventHub est une mini-application front-end Angular 21 (architecture standalone) présentant un catalogue d'événements. L'application fonctionne entièrement côté client — les données sont stockées en dur dans `src/app/models/event.model.ts`.
 
-## Code scaffolding
+Versions
+--------
+- Angular: 21 (standalone components)
+- Node / npm: compatible avec le projet (v16+ recommandé)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Installation & lancement
+------------------------
+1. Installer les dépendances:
 
 ```bash
-ng build
+npm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+2. Lancer l'application en développement:
 
 ```bash
-ng test
+npm start
 ```
 
-## Running end-to-end tests
+3. Ouvrir `http://localhost:4200`.
 
-For end-to-end (e2e) testing, run:
+Structure principale
+-------------------
+- `src/app/models/event.model.ts`: interface `EventItem` et tableau de données `EVENTS`.
+- `src/app/components/header`: composant `Header` avec navigation (`routerLink`).
+- `src/app/components/event-list`: composant parent `EventList` (standalone) — affiche la grille, filtre par catégorie, gère les favoris via `signal()`.
+- `src/app/components/event-card`: composant enfant `EventCard` (standalone) — reçoit un `EventItem` via `input.required<EventItem>()`, reçoit un `input<boolean>()` pour l'état favoris et émet `(toggleFavorite)` via `output<void>()`.
+- `src/app/components/event-details`: composant `EventDetails` (standalone) — reçoit l'`id` route via `input()` (grâce à `withComponentInputBinding()`), recherche l'événement et affiche les détails ou un message d'erreur.
+- `src/app/components/about`: page `About` chargée en lazy loading via `loadComponent()`.
+- `src/app/components/not-found`: page 404.
+- `src/app/app.routes.ts`: définition des routes et lazy-loading.
 
-```bash
-ng e2e
-```
+Principales fonctionnalités
+---------------------------
+- Composants standalone Angular 21.
+- Gestion d'état légère avec `signal()`, `computed()`, `update()`.
+- Control flow moderne: `@for` avec `track`, `@empty`, `@if/@else`.
+- Communication parent/enfant via `input()`/`output()`.
+- Routage moderne avec `provideRouter(routes, withComponentInputBinding())` pour lier les params de route aux `input()` des composants.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Utilisation technique
+---------------------
+- Filtrage des événements: `selectedCategory` est un `signal<string|null>`; `filteredEvents` est un `computed()`.
+- Favoris: stockés en tant que tableau d'IDs dans un `signal<string[]>`; modification via `update()`.
+- Détails d'un événement: `EventDetails` lit l'`id` via `input()` et récupère l'événement à partir du tableau `EVENTS`.
 
-## Additional Resources
+Bonnes pratiques & extensions possibles
+--------------------------------------
+- Remplacer les données en dur par une API REST ultérieurement.
+- Persister les favoris dans `localStorage` ou via un service.
+- Ajouter des tests unitaires pour les composants et la logique des signaux.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Licence
+-------
+Projet d'exemple personnel.
