@@ -58,6 +58,14 @@ Utilisation technique
 - Favoris: stockés en tant que tableau d'IDs dans un `signal<string[]>`; modification via `update()`.
 - Détails d'un événement: `EventDetails` lit l'`id` via `input()` et récupère l'événement à partir du tableau `EVENTS`.
 
+Captures d'écran
+----------------
+### Liste des événements avec compteurs
+![Liste des événements](docs/liste.png)
+
+### Formulaire de création avec validations
+![Formulaire de création](docs/formulaire.png)
+
 Bonnes pratiques & extensions possibles
 --------------------------------------
 - Remplacer les données en dur par une API REST ultérieurement.
